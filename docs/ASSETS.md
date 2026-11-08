@@ -21,7 +21,7 @@ This is a **public** GitHub repository. Do **not** commit extracted No Man's Sky
 ## Paths (historical)
 
 - Game: `F:\Program Files (x86)\Steam\steamapps\common\No Man's Sky`
-- Working copy: `C:\Users\vmorr\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
+- Working copy: `C:\Users\<YOUR_USER>\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
 - Previously registered (wrong nested root): `GAMEDATA\MODS\NMS_FSD_SeamlessWarp_MODS_Install\NMS_FSD_SeamlessWarp\AUDIO\...`
 
 Do not store per-user Steam IDs or machine-specific secrets in committed reports.
