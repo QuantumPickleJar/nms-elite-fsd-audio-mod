@@ -24,7 +24,8 @@
 
 ## Handoffs
 
-- [Windows Luna / local game prompt](docs/LUNA_WINDOWS.md)
+- [Luna High: local NMS host, Linux/Proton or Windows](docs/LUNA_LOCAL_HOST.md)
+- [Windows-tower-specific fallback](docs/LUNA_WINDOWS.md)
 - [Copilot / Codespaces upstream prompt](docs/COPILOT_CODESPACES.md)
 - [Detailed project evidence and suspects](docs/DIAGNOSTICS.md)
 - [Private assets / restoration guide](docs/ASSETS.md)
@@ -35,7 +36,7 @@
 - Game (tower): `F:\Program Files (x86)\Steam\steamapps\common\No Man's Sky`
 - Workspace (tower): `C:\Users\vmorr\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
 
-These are historical targets, not paths accessible from a Linux Codespace.
+These are **historical Windows targets only**, not paths to assume on the new Linux machine or in a Codespace. Discover the installed game and Steam library before modifying files.
 
 ## Safety, rights, and attribution
 
