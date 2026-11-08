@@ -18,7 +18,7 @@ Canonical public repo: https://github.com/QuantumPickleJar/nms-elite-fsd-audio-m
 
 **On older Windows tower (if this is the active game host):**
 - Historical NMS root: `F:\Program Files (x86)\Steam\steamapps\common\No Man's Sky`.
-- Historical build dir: `C:\Users\vmorr\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`.
+- Historical build dir: `C:\Users\<YOUR_USER>\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`.
 - Verify paths and actual game build, do not assume they still exist.
 
 ## Root cause to fix first
