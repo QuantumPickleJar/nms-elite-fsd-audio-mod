@@ -1,3 +1,7 @@
+## Confirmed stereo configuration fix
+
+The user reports the custom rising cue played with the subtype-only WEM and vanilla returned after removal. This resolves the custom stereo decoding failure in issue #1 for the tested asset. Full 23-media warp package conversion is now authorized and prepared; historical event mapping and timing still need a seamless-warp test. See STATUS.md for the latest evidence.
+
 ## Linux custom Wwise Vorbis probe — 2026-11-08
 
 ### Converter evaluation

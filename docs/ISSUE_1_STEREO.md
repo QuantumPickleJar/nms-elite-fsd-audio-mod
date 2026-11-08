@@ -1,3 +1,5 @@
+> Resolved by user gameplay A/B: the subtype-fixed cue played, and removing the probe restored vanilla. This confirms the stereo configuration fix for the tested short custom WEM. Full warp dispatch/timing remains a separate test.
+
 # Issue #1: stereo channel configuration diagnostic
 
 The first FFmpeg/wav2wem stereo Vorbis package FAILED NMS playback: the user heard silence. Installed paths and hashes matched. Offline decoding did not predict runtime compatibility.

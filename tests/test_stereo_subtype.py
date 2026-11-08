@@ -1,6 +1,6 @@
 import struct
 import unittest
-from tools.stereo_subtype_probe import fix_stereo_config
+from tools.stereo_subtype_probe import fix_stereo_config, standard_stereo_config
 from test_wem_inspect import make_wem
 
 class StereoSubtypeTests(unittest.TestCase):
@@ -26,3 +26,18 @@ class StereoSubtypeTests(unittest.TestCase):
         struct.pack_into('<H', data, 22, 1)
         with self.assertRaises(ValueError):
             fix_stereo_config(bytes(data))
+
+class GeneralStereoTests(StereoSubtypeTests):
+    def test_long_clip_preserves_frames_and_payload(self):
+        source = bytearray(self.source())
+        struct.pack_into('<I', source, 44, 1658400)
+        fixed = standard_stereo_config(bytes(source))
+        self.assertEqual(struct.unpack_from('<I', fixed, 44)[0], 1658400)
+        self.assertEqual(source[44:], fixed[44:])
+        self.assertEqual(standard_stereo_config(fixed), fixed)
+
+    def test_unknown_config_is_not_overwritten(self):
+        source = bytearray(self.source())
+        struct.pack_into('<I', source, 40, 0x9999)
+        with self.assertRaises(ValueError):
+            standard_stereo_config(bytes(source))

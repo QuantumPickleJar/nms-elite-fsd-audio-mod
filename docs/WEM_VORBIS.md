@@ -1,3 +1,5 @@
+> Update: the subtype-only candidate PASSED the user’s quick-menu playback/removal A/B test. Use the corrected stereo configuration for further builds; the original zero-config baseline remains a known failure. tools/build_warp_package.py applies the validated configuration across the six recovered clips and historical 23-ID map.
+
 > The original Linux Vorbis diagnostic failed the user’s NMS test. The rebuild command below reproduces that failed baseline. For the new subtype-only diagnostic and its remaining runtime gate, see [issue #1 investigation](ISSUE_1_STEREO.md).
 
 # Linux Wwise Vorbis conversion and quick-menu probe

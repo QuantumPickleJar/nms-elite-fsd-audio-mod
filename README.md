@@ -1,6 +1,6 @@
 # NMS Elite Dangerous FSD Audio Mod
 
-**Status: first custom Vorbis diagnostic failed; subtype-only candidate ready for testing.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement: an Elite Dangerous-style FSD engine crescendo and COVAS “4 … 3 … 2 … 1” countdown.
+**Status: custom stereo Vorbis playback confirmed by user A/B; full warp package prepared.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement: an Elite Dangerous-style FSD engine crescendo and COVAS “4 … 3 … 2 … 1” countdown.
 
 **No playable mod release is established yet.** Prior 23-WEM builds made no detectable change in-game. Do not install the archived early media as if it were a working release.
 

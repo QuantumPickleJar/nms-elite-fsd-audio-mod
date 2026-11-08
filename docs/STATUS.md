@@ -1,3 +1,13 @@
+## Stereo fix confirmed; full warp package prepared — 2026-11-08
+
+The user heard the distinct custom rising cue with the subtype-corrected probe, then removed it and confirmed vanilla quick-menu audio returned. This is a successful user-observed A/B test of the stereo configuration fix. The zero-config Vorbis candidate had previously been silent. The codebook UID and compressed stream were unchanged between those candidates.
+
+The user authorized extending conversion to the remaining sounds. All six recovered WAVs were encoded with FFmpeg libvorbis quality 6, wav2wem pinned revision, and standard stereo config 0x3102. Each output passed full packet framing and vgmstream decoding with exact source frame count. A private 23-WEM package preserves the historical mapping and original durations (1s, 1.5s, 34.55s). No precise prior countdown offsets were recovered from the available notes; the user was asked for those while conversion continued. No new trim, delay, or bank timing was guessed. Warp event IDs and sequence alignment still need the seamless-warp game test.
+
+The package has direct mod-root AUDIO/WINDOWS/MEDIA, no quick-menu overrides, and no BNK. No installed mods or saves were changed. Reproduce with tools/build_warp_package.py; output media and manifests remain private.
+
+---
+
 ## Issue #1: subtype-only candidate prepared — 2026-11-08
 
 The failed playback result is committed. A new isolated StereoConfig quick-menu ZIP changes only fmt+0x14 from zero to the standard stereo configuration 0x3102. Codebook UID, setup, seek table, and audio packets are unchanged. Thirteen tests passed; packet framing and vgmstream decode passed; decoded PCM matches the failed baseline. All four staged paths/hashes are verified. Candidate gameplay is pending. No installed mod or save was changed. See ISSUE_1_STEREO.md for findings and the Wwise Console fallback. Do not convert the 23 warp sounds.
