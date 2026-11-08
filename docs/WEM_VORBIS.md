@@ -4,7 +4,7 @@
 
 One private 1.5-second, 48 kHz stereo FSD recording was converted to a Wwise Vorbis WEM on SteamOS. The custom WEM has RIFF tag 0xFFFF, a 66-byte fmt chunk, a 16-byte hash chunk, and a data chunk. It is 2-channel, 48 kHz, and 72,000 PCM frames (1.5 seconds).
 
-The file matches the outer layout of the private native NMS quick-menu reference. vgmstream identifies it as Custom Vorbis and decodes it to a 1.5-second, 48 kHz stereo WAV. The NMS game has not yet been used to play this custom file, so runtime compatibility remains unconfirmed.
+The file matches the outer layout of the private native NMS quick-menu reference. vgmstream identifies it as Custom Vorbis and decodes it to a 1.5-second, 48 kHz stereo WAV. The user tested this file in NMS and reported silence. The installed four files matched the package hashes; the first custom Vorbis probe FAILED runtime playback.
 
 The WEM's subtype/channel value (0x00000000) and codebook UID (0x20CEF588) differ from the native reference (0x00003102 and 0xEC69CB18). Their meaning and runtime effect are not established. The diagnostic uses the converter's values without manually patching unknown fields.
 

@@ -21,7 +21,7 @@
 - The private ZIP replaces all four known streamed UI_Quickmenu_Open IDs (84247370, 544349961, 750436623, 794331107) with the same custom WEM.
 - Its root contains AUDIO/WINDOWS/MEDIA directly, plus a test readme and a generated manifest. It contains no BNK.
 - The package is local-only and omitted from Git. It must be tested with the earlier FSD, PCM16, and quick-menu probes disabled so only this one variable is active.
-- Offline parser/package tests pass. The user will perform the Steam Deck playback and removal/restore check. No game files or other mods were changed during preparation.
+- Offline parser/package tests pass. The user performed the Steam Deck playback test and reported silence; the deployed files matched the package. No game files or other mods were changed during preparation.
 
 Reproduction and tool details are in WEM_VORBIS.md.
 

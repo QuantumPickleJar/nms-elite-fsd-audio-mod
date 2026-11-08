@@ -1,3 +1,11 @@
+## Quick-menu Vorbis probe: silent — 2026-11-08
+
+- The user reports silence when opening the quick menu with the Linux-generated Vorbis probe installed. A gameplay clip was provided; it contains an audio stream, but the user's report is the playback observation.
+- A read-only inspection of the Steam Deck MODS directory found all four diagnostic WEMs at the expected paths, each matching the packaged custom WEM SHA-256. No other copies of those four target IDs or BNK files were found under MODS at inspection time.
+- This is a negative NMS runtime result despite successful vgmstream decoding. The differing Wwise extension fields and the converter's stereo output remain possible causes; no single cause is established. Do not expand to the 23 target files. Next investigate an actual Wwise Console Vorbis conversion or a verified stereo encoder against the native reference.
+
+---
+
 ## Linux Wwise Vorbis probe — 2026-11-08
 
 - Created branch codex/linux-wem-vorbis-2026-11-08 from clean main; existing repository work was preserved.
@@ -6,9 +14,9 @@
 - The custom WEM matched the private native NMS reference's outer RIFF layout. vgmstream identified it as Custom Vorbis and decoded all 72,000 samples to a 1.5-second stereo WAV.
 - The WEM header's subtype and codebook UID differ from the native reference. Those fields were not normalized or guessed; their effect on NMS remains unverified. See the Wwise Vorbis conversion notes in WEM_VORBIS.md.
 - Prepared a personal-use diagnostic ZIP with the same custom WEM in the four known streamed UI_Quickmenu_Open slots. AUDIO is directly under the ZIP's mod root. The ZIP contains no persistent BNK and is not in the public repository.
-- Offline Python tests pass. No game files or installed mods were changed. Steam Deck playback has not been tested.
+- Offline Python tests pass. No game files or installed mods were changed. The user subsequently tested this first build and reported silence.
 
-Next gate: User installs only this diagnostic package for the quick-menu codec test, then reports audible custom cue, silence, or vanilla audio. Do not convert the remaining 23 files until that test passes.
+Result: The first Vorbis diagnostic was silent in the user’s Steam Deck test. A subtype-only diagnostic is the next investigation. Do not convert the remaining 23 files until that test passes.
 
 ---
 
