@@ -1,3 +1,16 @@
+## Steam Deck breakthrough — 2026-11-08
+
+**Confirmed by user, with an 8.09-second gameplay clip showing the in-game quick menu:** No Man's Sky launched **locally on Steam Deck** (separate network from Windows tower); after installation of the four-variant quick-menu diagnostic, opening the quick menu audibly played a mini-warp/pulse-engine wind-up in place of its ordinary opening effect. This is the first observed successful **SFX loose WEM replacement under SteamOS/Proton** in this project.
+
+- Probe package: `NMS_FSD_SteamDeck_QuickMenu_All4_Audible_Control_2026-11-08.zip`, four streamed quick-menu variants `84247370`, `544349961`, `750436623`, `794331107` replaced with the **native current-game** donor WEM. This verifies the mod-root layout and playback of **native encoded media**, NOT decoding of the project's custom PCM16 `0xFFFE` WEMs.
+- Host/Deck game build, mod config, and installed file hashes were not independently audited during this successful gameplay test. Other FSD target-event IDs remain unverified.
+- **Next A/B test:** Exit NMS, remove/disable the quick-menu probe (keep rollback), install the already prepared corrected-root, no-BNK 23-WEM FSD diagnostic and try exactly the requested **pulse-to-system seamless warp**, noting whether custom countdown and engine sounds play.
+- **If FSD 23-WEM test remains unchanged:** Use the already-proven quick-menu event as a codec control by substituting one of the exact PCM16 custom WEMs as the quick-menu sound. This distinguishes custom-WEM runtime decoding from a wrong seamless-warp event-ID mapping. Do not modify any persistent BNK until necessary. Explicitly test one variable at a time.
+- Only after WEM decoding **and** triggering of actual seamless-warp event IDs are verified should the 4-3-2-1 and engine timing be finalized.
+- No finished FSD game release yet. The Deck playtest result is a user-observed success for the loader control, not the FSD sequence.
+
+---
+
 # Project status
 
 **2026-11-08 — Windows host audit complete; no game-tested FSD release yet.**
