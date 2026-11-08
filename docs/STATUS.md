@@ -1,3 +1,17 @@
+## Linux Wwise Vorbis probe — 2026-11-08
+
+- Created branch codex/linux-wem-vorbis-2026-11-08 from clean main; existing repository work was preserved.
+- Inspected the private recovered recordings and used only the 1.5-second 48 kHz stereo source for this milestone. The other 23 media targets were not converted.
+- FFmpeg 8.1.2 with libvorbis generated a temporary Ogg Vorbis stream at quality 6. Pinned wav2wem commit 38e916953bec63862b13b449d780d1303a1bf29c repacketized it into a Wwise Vorbis WEM. The file has tag 0xFFFF, 66-byte fmt, 2 channels, 48 kHz, 72,000 frames, and fmt/hash/data chunks.
+- The custom WEM matched the private native NMS reference's outer RIFF layout. vgmstream identified it as Custom Vorbis and decoded all 72,000 samples to a 1.5-second stereo WAV.
+- The WEM header's subtype and codebook UID differ from the native reference. Those fields were not normalized or guessed; their effect on NMS remains unverified. See the Wwise Vorbis conversion notes in WEM_VORBIS.md.
+- Prepared a personal-use diagnostic ZIP with the same custom WEM in the four known streamed UI_Quickmenu_Open slots. AUDIO is directly under the ZIP's mod root. The ZIP contains no persistent BNK and is not in the public repository.
+- Offline Python tests pass. No game files or installed mods were changed. Steam Deck playback has not been tested.
+
+Next gate: User installs only this diagnostic package for the quick-menu codec test, then reports audible custom cue, silence, or vanilla audio. Do not convert the remaining 23 files until that test passes.
+
+---
+
 ## Steam Deck custom-WEM decode failure — 2026-11-08
 
 ### Observed

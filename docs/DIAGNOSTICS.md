@@ -1,3 +1,32 @@
+## Linux custom Wwise Vorbis probe — 2026-11-08
+
+### Converter evaluation
+
+- The Steam Deck has FFmpeg 8.1.2 and FFprobe; its FFmpeg build includes the libvorbis encoder. Python 3.14 is present. Rust, Cargo, Go, Wine, vgmstream-cli, ww2ogg, and revorb were not in PATH. NMSAO and HGPAKtool were not found on this host.
+- LambdaEd1th/wem-audio is a Rust WEM library under AGPL-3.0-or-later, not a standalone CLI. Its Vorbis writer emits a 24-byte fmt chunk followed by a separate vorb chunk. Its source therefore does not match the current NMS donor's 66-byte fmt plus hash and data chunks. Its tests cover its own conversions; Rust/Cargo were absent, and the project was not selected for this probe.
+- pas2k/wav2wem is a Go converter under GPL-2.0. Its source targets modern Wwise Vorbis with a 66-byte fmt chunk, hash chunk, modified packets, external aoTuV 6.03 codebooks, and a seek table. The pinned commit's Go tests pass. Its direct WAV/FLAC path invokes an embedded oggenc2.exe, which fails on this Linux host with exec format error.
+- A working Linux path is FFmpeg libvorbis to temporary Ogg, then wav2wem on that Ogg. wav2wem accepts Ogg input without re-encoding and uses its WEM repacketizer. No Wine or Wwise installation was used. FFmpeg created a 48 kHz, 2-channel, quality-6 Ogg from the private source.
+- The author's sound2wem workflow sets Wwise Console conversion to Vorbis Quality High; the script is Windows CMD-based and requires Wwise Console. It remains a valid reference workflow, but it is not a Linux-native option on this Deck.
+
+### Encoded output and reference comparison
+
+- One private 1.5-second source was converted. The remaining 23 target IDs were not processed.
+- The resulting WEM is 25,236 bytes. It reports Wwise codec tag 0xFFFF, a 66-byte fmt chunk with 48 bytes of Wwise extension data, 2 channels, 48 kHz, 72,000 PCM frames, and chunks fmt/hash/data.
+- The private native quick-menu reference also has codec tag 0xFFFF, 66-byte fmt, stereo 48 kHz audio, and chunks fmt/hash/data. These matching outer fields are the current NMS structural basis for the probe.
+- vgmstream reported “Custom Vorbis”, 48 kHz, 2 channels, 72,000 samples, and 1.500 seconds, then decoded the WEM to a WAV successfully. This proves a valid decodable Wwise Vorbis stream; it does not prove NMS runtime acceptance.
+- Some internal header values differ from the native reference: subtype/channel metadata is 0x00000000 vs 0x00003102, and codebook UID is 0x20CEF588 vs 0xEC69CB18. wav2wem documents its field research as based on a corpus whose structurally matched sample configuration is mono/24 kHz. The meaning and NMS runtime effect of these values are not established here. The diagnostic preserves converter output rather than patching unknown fields by guess.
+
+### Diagnostic package
+
+- The private ZIP replaces all four known streamed UI_Quickmenu_Open IDs (84247370, 544349961, 750436623, 794331107) with the same custom WEM.
+- Its root contains AUDIO/WINDOWS/MEDIA directly, plus a test readme and a generated manifest. It contains no BNK.
+- The package is local-only and omitted from Git. It must be tested with the earlier FSD, PCM16, and quick-menu probes disabled so only this one variable is active.
+- Offline parser/package tests pass. The user will perform the Steam Deck playback and removal/restore check. No game files or other mods were changed during preparation.
+
+Reproduction and tool details are in WEM_VORBIS.md.
+
+---
+
 ## Steam Deck custom-WEM decode failure — 2026-11-08
 
 ### Observed
