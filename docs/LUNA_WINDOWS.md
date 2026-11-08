@@ -6,7 +6,7 @@ First pull and read https://github.com/QuantumPickleJar/nms-elite-fsd-audio-mod 
 
 ## Environment on Windows tower
 - NMS game: `F:\Program Files (x86)\Steam\steamapps\common\No Man's Sky`
-- Local working dir: `C:\Users\vmorr\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
+- Local working dir: `C:\Users\<YOUR_USER>\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
 - Existing repository: `QuantumPickleJar/nms-elite-fsd-audio-mod` (PUBLIC). Verify before any push.
 - User can personally test NMS. If autonomous in-game testing isn't possible, create a conspicuous diagnostic sample and clear test instructions; never claim in-game success without a completed listening test.
 - Preserve unrelated mods, saves, and installation state.
