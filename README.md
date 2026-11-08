@@ -34,7 +34,7 @@
 ## Local paths from previous sessions
 
 - Game (tower): `F:\Program Files (x86)\Steam\steamapps\common\No Man's Sky`
-- Workspace (tower): `C:\Users\vmorr\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
+- Workspace (tower): `C:\Users\<YOUR_USER>\Documents\ChatGPT\NMS Modding\NMS_FSD_Working\Build_Sequence`
 
 These are **historical Windows targets only**, not paths to assume on the new Linux machine or in a Codespace. Discover the installed game and Steam library before modifying files.
 
