@@ -1,3 +1,5 @@
+> The original Linux Vorbis diagnostic failed the user’s NMS test. The rebuild command below reproduces that failed baseline. For the new subtype-only diagnostic and its remaining runtime gate, see [issue #1 investigation](ISSUE_1_STEREO.md).
+
 # Linux Wwise Vorbis conversion and quick-menu probe
 
 ## Result

@@ -1,3 +1,9 @@
+## Issue #1: subtype-only candidate prepared — 2026-11-08
+
+The failed playback result is committed. A new isolated StereoConfig quick-menu ZIP changes only fmt+0x14 from zero to the standard stereo configuration 0x3102. Codebook UID, setup, seek table, and audio packets are unchanged. Thirteen tests passed; packet framing and vgmstream decode passed; decoded PCM matches the failed baseline. All four staged paths/hashes are verified. Candidate gameplay is pending. No installed mod or save was changed. See ISSUE_1_STEREO.md for findings and the Wwise Console fallback. Do not convert the 23 warp sounds.
+
+---
+
 ## Quick-menu Vorbis probe: silent — 2026-11-08
 
 - The user reports silence when opening the quick menu with the Linux-generated Vorbis probe installed. A gameplay clip was provided; it contains an audio stream, but the user's report is the playback observation.

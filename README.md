@@ -1,6 +1,6 @@
 # NMS Elite Dangerous FSD Audio Mod
 
-**Status: first custom Vorbis diagnostic failed Steam Deck playback; subtype investigation underway.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement: an Elite Dangerous-style FSD engine crescendo and COVAS “4 … 3 … 2 … 1” countdown.
+**Status: first custom Vorbis diagnostic failed; subtype-only candidate ready for testing.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement: an Elite Dangerous-style FSD engine crescendo and COVAS “4 … 3 … 2 … 1” countdown.
 
 **No playable mod release is established yet.** Prior 23-WEM builds made no detectable change in-game. Do not install the archived early media as if it were a working release.
 
@@ -11,7 +11,7 @@
 - **Later Windows audit, not independently reproduced here:** 23 candidate IDs map statically to the persistent audio bank; the three `Sequence_End` targets were reported *memory resident*, contradicting an “all streamed” characterization. Reconcile per-ID storage and mappings against the installed Forsaken build.
 - **Unverified:** Newest converted WEM runtime playback; Forsaken seamless-warp event dispatch; FSD engine and countdown timing; any bank patch compatibility. A one-file probe replacing a game sound with itself is *not* an audible pass/fail test.
 - **Known-positive user observation:** Subnautica PDA exosuit voice replacement works on the same installation. Its localized WEM path does **not** establish that warp SFX event IDs work.
-- **Offline custom-WEM milestone:** One 1.5-second private source was encoded as 48 kHz stereo Wwise Vorbis, structurally matched the known native quick-menu WEM layout, and decoded through vgmstream. A no-BNK, four-variant quick-menu ZIP is ready for the Steam Deck playback test. The user tested this build and reported **silence**; no other source was converted.
+- **Offline custom-WEM milestone:** One 1.5-second private source was encoded as 48 kHz stereo Wwise Vorbis, structurally matched the known native quick-menu WEM layout, and decoded through vgmstream. The original no-BNK quick-menu ZIP failed playback. A new subtype-only diagnostic is documented in [issue #1 findings](docs/ISSUE_1_STEREO.md). The user tested this build and reported **silence**; no other source was converted.
 - **New external lead:** [Unmute Pulse Drive (Forsaken)](https://www.nexusmods.com/nomanssky/mods/4765) notes a soundbank muting interaction and modifies `AUDIO/WINDOWS/NMS_AUDIO_PERSISTENT.BNK`. Do not combine competing BNK replacements blindly. [Warframe UI Sounds](https://www.nexusmods.com/nomanssky/mods/4218) describes a known quick-menu open/close loose-WEM replacement: good candidate for an *audibly distinct*, isolated loader probe.
 
 ## Work order
