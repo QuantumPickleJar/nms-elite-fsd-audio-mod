@@ -1,0 +1,71 @@
+{
+  "schema": "nms-fsd-legacy-mapping-v1",
+  "status": "UNVERIFIED: recovered old silent WAV-like WEM ZIP, not newest converted build",
+  "source_archive_sha256": "050425aea1b7c1f73949e9261378f9445053e5e318e2ba7983d1d709b0feb0ae",
+  "sample_format_old": "48kHz stereo 24-bit PCM, invalid/unverified pseudo-WEM fmt 0xFFFE",
+  "groups": [
+    {
+      "duration_seconds": 34.55,
+      "source_pcm_sha256": "75985ea7b6a8fe917ce72e9c091211fe6285af88f34b03a6346736876f167d5d",
+      "ids": [
+        "223421648",
+        "354031662",
+        "415574142",
+        "595049283"
+      ]
+    },
+    {
+      "duration_seconds": 1.5,
+      "source_pcm_sha256": "e66530bbbade23ec012fa0dce40c01b1b68dfabb0e7eeb5e8bd1e689636b44c2",
+      "ids": [
+        "1026697357",
+        "298300864",
+        "978981708"
+      ]
+    },
+    {
+      "duration_seconds": 1,
+      "source_pcm_sha256": "7e7e7fd5cf1610fa75b840abeffe4690e3316996d62f2c4d2aec8f3dc230ed38",
+      "ids": [
+        "1025197395"
+      ]
+    },
+    {
+      "duration_seconds": 1,
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "ids": [
+        "1066800638",
+        "288517693",
+        "518137332",
+        "67486557",
+        "814755731"
+      ]
+    },
+    {
+      "duration_seconds": 1,
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "ids": [
+        "141687013",
+        "439822437",
+        "56156737",
+        "651020811",
+        "774141297",
+        "903302698"
+      ]
+    },
+    {
+      "duration_seconds": 1,
+      "source_pcm_sha256": "f86691e5b4c1eeb34267ccdb9be8b7022929faaf30be91713170c8612e9e011a",
+      "ids": [
+        "152550011",
+        "368971936",
+        "424377555",
+        "940918041"
+      ]
+    }
+  ],
+  "notes": [
+    "IDs, event associations and streamed-vs-resident status require re-verification.",
+    "The latest 77.8MB converted build was not available in this workspace."
+  ]
+}
