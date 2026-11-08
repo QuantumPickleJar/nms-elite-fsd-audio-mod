@@ -1,0 +1,28 @@
+# Local game and third-party material; this is a PUBLIC repo.
+*.wem
+*.bnk
+*.pak
+*.7z
+*.zip
+*.mp3
+*.ogg
+*.wav
+*.flac
+*.ucas
+*.utoc
+*.exe
+*.dll
+/audio_sources/
+/private/
+/local_assets/
+/game_data/
+/releases/
+/build/
+/dist/
+.DS_Store
+__pycache__/
+*.pyc
+*.log
+# Output of per-machine audits may include user/Steam IDs or file paths
+/audit-output/
+/reports/private/
