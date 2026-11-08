@@ -1,3 +1,22 @@
+## Steam Deck custom-WEM decode failure — 2026-11-08
+
+### Observed
+- User tested locally on Steam Deck and reported **quick-menu opening went silent** when the four proven quick-menu IDs were all overridden with the 1.5-second converted custom FSD file. The same four slots audibly played an unmodified native game WEM in the previous positive control.
+- Local byte comparison: native successful donor `84247370.wem` in `NMS_FSD_SteamDeck_QuickMenu_All4_Audible_Control_2026-11-08.zip` is 25,903 bytes, RIFF tag `0xFFFF`, `fmt` size 66, chunks `fmt/hash/data`; failed custom donor `84247370.wem` in `NMS_FSD_Deck_CustomWEM_Decode_Probe_2026-11-08.zip` is 288,064 bytes, RIFF tag `0xFFFE`, `fmt` size 24, chunks `fmt/JUNK/data`, PCM16 48 kHz stereo.
+- `0xFFFE` means WAVEFORMATEXTENSIBLE: its `cbSize` in the failed file is `6`, below the **required 22 bytes** that describe valid bits, channel mask and subtype GUID. Therefore the file is an invalid WAVEFORMATEXTENSIBLE representation, not a demonstrated Wwise Vorbis encoding. See https://learn.microsoft.com/en-us/previous-versions/dd757713(v=vs.85).
+- Independently inspected **all 181 WEMs** in the user-uploaded working `Subnautica PDA Exosuit Voice-3893-1-1-1762025763.7z`: every WEM has RIFF tag `0xFFFF` and `fmt` chunk size 66, with `AUDIO/WINDOWS/MEDIA/ENGLISH(US)/<id>.wem` paths. The author's published workflow uses `sound2wem` and therefore real Wwise Console: https://www.nexusmods.com/nomanssky/mods/3893 and https://github.com/EternalLeo/sound2wem .
+- The separate `Warframe UI Sounds` mod author documents loose SFX WEMs under `AUDIO/WINDOWS/MEDIA` (https://www.nexusmods.com/nomanssky/mods/4218); the `Unmute Pulse Drive` mod edits the persistent **BNK** for a distinct Forsaken muting issue (https://www.nexusmods.com/nomanssky/mods/4765), not the solution to an invalid WEM header.
+- Prior community report with nearly identical symptom required changing Wwise conversion from default PCM to **Vorbis**: https://www.reddit.com/r/NoMansSkyMods/comments/xb4p84/ . Corroboration only; still verify with a new in-game pass.
+
+### Updated priority
+1. **Do not run the existing 23 PCM16 files again.** Their container format is the leading proven defect. Do not merely change `.wav` filename to `.wem`, change RIFF tags by hand, or repackage the old bytes.
+2. Use a **genuine Wwise Console conversion**: `sound2wem` with `--conversion:Vorbis Quality High`, 48kHz and target channel count as appropriate, or verified Wwise authoring conversion settings. Requires Wwise installation/availability on an appropriate machine; Linux Steam Deck can still run the game and test a WEM produced elsewhere.
+3. Re-encode just **one** privately recovered FSD WAV, then place that genuine new WEM in **all four** known quick-menu opening slots (disable all other FSD/quick-menu probes while testing). Pass gate: audible replacement on Steam Deck. If still silent, inspect Wwise version/conversion/decoder and test the new WEM metadata against the proven reference before scaling.
+4. Once that passes, identify **actual Forsaken seamless pulse-to-system warp event IDs**, which remain unverified. Only then convert the complete 23 sound map as needed and synchronize 4→3→2→1 + FSD engine. Don't mistake successful quick-menu codec testing for proof the warp event IDs are right.
+5. Keep the author's third-party WEMs, source recordings and any licensed derivative audio out of this **public** repository; commit only procedural metadata, code, hashes and test outcomes.
+
+---
+
 # Failure analysis and verification gates — 2026-11-08
 
 ## Evidence ledger
