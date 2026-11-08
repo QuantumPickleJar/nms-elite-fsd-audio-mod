@@ -1,0 +1,217 @@
+{
+  "purpose": "historical diagnostic metadata from the recovered old silent handoff; no private audio material included",
+  "original_archive": "NMS_FSD_SeamlessWarp_MODS_Install.zip",
+  "original_archive_sha256": "050425aea1b7c1f73949e9261378f9445053e5e318e2ba7983d1d709b0feb0ae",
+  "source_count": 23,
+  "unique_audio_count": 6,
+  "recover_method": "RIFF data-chunk interleaved stereo PCM 24-bit 48kHz recovered as canonical PCM WAV; file bytes not included",
+  "entries": [
+    {
+      "wem_id": "56156737",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "67486557",
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_99aa3a1f7584.wav"
+    },
+    {
+      "wem_id": "141687013",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "152550011",
+      "source_pcm_sha256": "f86691e5b4c1eeb34267ccdb9be8b7022929faaf30be91713170c8612e9e011a",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_f86691e5b4c1.wav"
+    },
+    {
+      "wem_id": "223421648",
+      "source_pcm_sha256": "75985ea7b6a8fe917ce72e9c091211fe6285af88f34b03a6346736876f167d5d",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 34.55,
+      "source_wem_size_bytes": 9950464,
+      "recovered_wav": "audio_sources/clip_034.55s_75985ea7b6a8.wav"
+    },
+    {
+      "wem_id": "288517693",
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_99aa3a1f7584.wav"
+    },
+    {
+      "wem_id": "298300864",
+      "source_pcm_sha256": "e66530bbbade23ec012fa0dce40c01b1b68dfabb0e7eeb5e8bd1e689636b44c2",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1.5,
+      "source_wem_size_bytes": 432064,
+      "recovered_wav": "audio_sources/clip_001.50s_e66530bbbade.wav"
+    },
+    {
+      "wem_id": "354031662",
+      "source_pcm_sha256": "75985ea7b6a8fe917ce72e9c091211fe6285af88f34b03a6346736876f167d5d",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 34.55,
+      "source_wem_size_bytes": 9950464,
+      "recovered_wav": "audio_sources/clip_034.55s_75985ea7b6a8.wav"
+    },
+    {
+      "wem_id": "368971936",
+      "source_pcm_sha256": "f86691e5b4c1eeb34267ccdb9be8b7022929faaf30be91713170c8612e9e011a",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_f86691e5b4c1.wav"
+    },
+    {
+      "wem_id": "415574142",
+      "source_pcm_sha256": "75985ea7b6a8fe917ce72e9c091211fe6285af88f34b03a6346736876f167d5d",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 34.55,
+      "source_wem_size_bytes": 9950464,
+      "recovered_wav": "audio_sources/clip_034.55s_75985ea7b6a8.wav"
+    },
+    {
+      "wem_id": "424377555",
+      "source_pcm_sha256": "f86691e5b4c1eeb34267ccdb9be8b7022929faaf30be91713170c8612e9e011a",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_f86691e5b4c1.wav"
+    },
+    {
+      "wem_id": "439822437",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "518137332",
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_99aa3a1f7584.wav"
+    },
+    {
+      "wem_id": "595049283",
+      "source_pcm_sha256": "75985ea7b6a8fe917ce72e9c091211fe6285af88f34b03a6346736876f167d5d",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 34.55,
+      "source_wem_size_bytes": 9950464,
+      "recovered_wav": "audio_sources/clip_034.55s_75985ea7b6a8.wav"
+    },
+    {
+      "wem_id": "651020811",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "774141297",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "814755731",
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_99aa3a1f7584.wav"
+    },
+    {
+      "wem_id": "903302698",
+      "source_pcm_sha256": "b897d2f1df29c9a986e77295e6a3fdc932b99c3735c1966849d89b1e1249edc8",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_b897d2f1df29.wav"
+    },
+    {
+      "wem_id": "940918041",
+      "source_pcm_sha256": "f86691e5b4c1eeb34267ccdb9be8b7022929faaf30be91713170c8612e9e011a",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_f86691e5b4c1.wav"
+    },
+    {
+      "wem_id": "978981708",
+      "source_pcm_sha256": "e66530bbbade23ec012fa0dce40c01b1b68dfabb0e7eeb5e8bd1e689636b44c2",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1.5,
+      "source_wem_size_bytes": 432064,
+      "recovered_wav": "audio_sources/clip_001.50s_e66530bbbade.wav"
+    },
+    {
+      "wem_id": "1025197395",
+      "source_pcm_sha256": "7e7e7fd5cf1610fa75b840abeffe4690e3316996d62f2c4d2aec8f3dc230ed38",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_7e7e7fd5cf16.wav"
+    },
+    {
+      "wem_id": "1026697357",
+      "source_pcm_sha256": "e66530bbbade23ec012fa0dce40c01b1b68dfabb0e7eeb5e8bd1e689636b44c2",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1.5,
+      "source_wem_size_bytes": 432064,
+      "recovered_wav": "audio_sources/clip_001.50s_e66530bbbade.wav"
+    },
+    {
+      "wem_id": "1066800638",
+      "source_pcm_sha256": "99aa3a1f7584ef4f9c9e086ae842b93da9d2b8e64c68e621c33d8bd3405c435e",
+      "source_header_tag": "0xFFFE",
+      "source_fmt_chunk_bytes": 24,
+      "duration_s": 1,
+      "source_wem_size_bytes": 288064,
+      "recovered_wav": "audio_sources/clip_001.00s_99aa3a1f7584.wav"
+    }
+  ]
+}
