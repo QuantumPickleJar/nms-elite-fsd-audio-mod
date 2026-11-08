@@ -85,7 +85,12 @@ def main():
     parser.add_argument('--wav2wem', type=Path, required=True)
     parser.add_argument('--vgmstream', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--buildup-gain-db', type=float, default=0,
+                        help='Optional 0–10 dB gain; preserves original five-second arrangement')
     args = parser.parse_args()
+    if not 0 <= args.buildup_gain_db <= 10:
+        parser.error('buildup gain must be between 0 and 10 dB')
+    root = ROOT + ('_Louder' if args.buildup_gain_db else '')
     if args.output.exists():
         parser.error('refusing to overwrite existing ZIP')
     long_source = args.source_root / 'clip_034.55s_75985ea7b6a8.wav'
@@ -94,10 +99,16 @@ def main():
         work = Path(temp)
         buildup_wav = work / 'buildup_excerpt.wav'
         excerpt(long_source, buildup_wav)
+        if args.buildup_gain_db:
+            boosted = work / 'buildup_louder.wav'
+            run(['ffmpeg', '-v', 'error', '-i', buildup_wav, '-af',
+                 f'volume={args.buildup_gain_db}dB', '-c:a', 'pcm_s24le', boosted])
+            buildup_wav = boosted
         buildup, buildup_info = encode(buildup_wav, work, 'buildup', args.wav2wem, args.vgmstream)
         jump, jump_info = encode(jump_source, work, 'jump', args.wav2wem, args.vgmstream)
         manifest = {
             'status': 'experimental; event dispatch and timing need gameplay test',
+            'buildup_gain_db': args.buildup_gain_db,
             'source_interval_seconds': [13.05, 18.05],
             'source_offsets_seconds': {'4': 13.55, '3': 14.55, '2': 15.55,
                                        '1': 16.55, 'jump': 18.05},
@@ -114,9 +125,9 @@ def main():
         with zipfile.ZipFile(args.output, 'x', zipfile.ZIP_DEFLATED) as archive:
             for ids, data in ((BUILDUP_IDS, buildup), (END_IDS, jump)):
                 for media_id in ids:
-                    archive.writestr(f'{ROOT}/AUDIO/WINDOWS/MEDIA/{media_id}.wem', data)
-            archive.writestr(f'{ROOT}/MANIFEST.json', json.dumps(manifest, indent=2) + '\n')
-            archive.writestr(f'{ROOT}/README_TEST.txt',
+                    archive.writestr(f'{root}/AUDIO/WINDOWS/MEDIA/{media_id}.wem', data)
+            archive.writestr(f'{root}/MANIFEST.json', json.dumps(manifest, indent=2) + '\n')
+            archive.writestr(f'{root}/README_TEST.txt',
                 'Experimental Forsaken warp sequence diagnostic. Exit NMS; move earlier FSD '
                 'and quick-menu probe folders outside MODS. Extract this mod root into '
                 'GAMEDATA/MODS and enable it. Repeat the same pulse-to-system warp. '
@@ -129,7 +140,7 @@ def main():
         assert not any(n.lower().endswith('.bnk') for n in archive.namelist())
         for group in manifest['groups']:
             for media_id in group['media_ids']:
-                path = f'{ROOT}/AUDIO/WINDOWS/MEDIA/{media_id}.wem'
+                path = f'{root}/AUDIO/WINDOWS/MEDIA/{media_id}.wem'
                 assert sha(archive.read(path)) == group['sha256']
     print(args.output, sha(args.output.read_bytes()))
 
