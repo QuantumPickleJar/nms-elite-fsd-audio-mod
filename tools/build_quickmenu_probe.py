@@ -16,8 +16,10 @@ from typing import Any
 
 if __package__:
     from .wem_inspect import WemFormatError, inspect_wem
+    from .stereo_subtype_probe import standard_stereo_config
 else:
     from wem_inspect import WemFormatError, inspect_wem
+    from stereo_subtype_probe import standard_stereo_config
 
 
 WAV2WEM_URL = "https://github.com/pas2k/wav2wem"
@@ -336,6 +338,7 @@ def main() -> int:
         # wav2wem's WAV path calls its embedded oggenc2.exe. Feeding the
         # Linux-generated Ogg uses its WEM repacketizer without that Windows tool.
         run([args.wav2wem, str(ogg_path), "-o", str(wem_path)])
+        wem_path.write_bytes(standard_stereo_config(wem_path.read_bytes()))
         wem_info = require_target_wem(wem_path)
 
         decoder_verification = None

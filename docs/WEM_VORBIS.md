@@ -1,6 +1,6 @@
 > Update: the subtype-only candidate PASSED the user’s quick-menu playback/removal A/B test. Use the corrected stereo configuration for further builds; the original zero-config baseline remains a known failure. tools/build_warp_package.py applies the validated configuration across the six recovered clips and historical 23-ID map.
 
-> The original Linux Vorbis diagnostic failed the user’s NMS test. The rebuild command below reproduces that failed baseline. For the new subtype-only diagnostic and its remaining runtime gate, see [issue #1 investigation](ISSUE_1_STEREO.md).
+> The original Linux Vorbis diagnostic failed the user’s NMS test. The rebuild command below now applies the confirmed stereo configuration fix. For the new subtype-only diagnostic and its remaining runtime gate, see [issue #1 investigation](ISSUE_1_STEREO.md).
 
 # Linux Wwise Vorbis conversion and quick-menu probe
 
@@ -10,7 +10,7 @@ One private 1.5-second, 48 kHz stereo FSD recording was converted to a Wwise Vor
 
 The file matches the outer layout of the private native NMS quick-menu reference. vgmstream identifies it as Custom Vorbis and decodes it to a 1.5-second, 48 kHz stereo WAV. The user tested this file in NMS and reported silence. The installed four files matched the package hashes; the first custom Vorbis probe FAILED runtime playback.
 
-The WEM's subtype/channel value (0x00000000) and codebook UID (0x20CEF588) differ from the native reference (0x00003102 and 0xEC69CB18). Their meaning and runtime effect are not established. The diagnostic uses the converter's values without manually patching unknown fields.
+The original failed WEM used subtype/channel value zero. Current builders set standard stereo configuration 0x3102, matching the successful user-tested candidate. The codebook UID remains the converter's 0x20CEF588; it was not copied from the native reference, and the unchanged codebooks played successfully in the tested short cue.
 
 ## Linux tool assessment
 
