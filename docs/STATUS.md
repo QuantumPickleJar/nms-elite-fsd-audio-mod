@@ -1,3 +1,13 @@
+## Steam Deck FSD-path negative test — 2026-11-08
+
+- The user reports **no noticeable audio changes** during a locally launched Steam Deck **pulse-to-system seamless warp**, documented by a 16-second gameplay clip. The clip visually shows the correct warp route and countdown; auditory assessment remains the user's report. This followed the earlier **successful** native-WEM quick-menu test.
+- The user also reported that the **latest FSD revision remained in the MODS directory**. Whether multiple active FSD package roots (or a BNK override) competed during this test is **not independently established**. Therefore the negative result does **not** conclusively resolve event mapping vs codec vs package overlap.
+- Inspection of the recovered 23-WEM no-BNK path-test archive confirms all 23 copies retain `0xFFFE` WAVEFORMATEXTENSIBLE PCM16 headers (24-byte fmt chunk). This contrasts with the native current-game donor WEM (`0xFFFF`, 66-byte fmt chunk) heard successfully in the quick-menu test. A custom-WEM runtime decode test is still needed.
+- Prepared *private, not publicly committed*: `NMS_FSD_Deck_CustomWEM_Decode_Probe_2026-11-08.zip` (~1 MB; SHA-256 `1c709aca8563e1aa5c554f14a7c5c967b59f3c99f5eb5373708249978691625f`). It places **byte-for-byte** former 1.5-second FSD WEM `1026697357.wem` (`edc6a03fe4815f06cc84dfda52ce4976884d7d9fbb83b295eda2aa06dc0ac50e`) in all four known-responding UI_Quickmenu_Open slots (84247370, 544349961, 750436623, 794331107), without a BNK. This is to isolate *custom codec decoding* from *warp event trigger*.
+- **Next playtest (Deck):** exit NMS, temporarily move prior FSD and quick-menu probe folders **entirely outside** `GAMEDATA/MODS`; install only the custom decoder probe; relaunch and repeatedly open the quick menu. Report changed custom cue / silence / vanilla. Remove and relaunch for A/B confirmation. Do **not** mark final FSD playable based solely on an unrelated quick-menu control.
+
+---
+
 ## Steam Deck breakthrough — 2026-11-08
 
 **Confirmed by user, with an 8.09-second gameplay clip showing the in-game quick menu:** No Man's Sky launched **locally on Steam Deck** (separate network from Windows tower); after installation of the four-variant quick-menu diagnostic, opening the quick menu audibly played a mini-warp/pulse-engine wind-up in place of its ordinary opening effect. This is the first observed successful **SFX loose WEM replacement under SteamOS/Proton** in this project.
