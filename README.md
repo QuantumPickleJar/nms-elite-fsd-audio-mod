@@ -10,7 +10,7 @@ The private `NMS_FSD_HUD_Countdown_Only_2026-11-08.zip` contains one `NMS_FSD_Co
 
 Close the game, remove earlier `NMS_FSD_*` countdown/charging probe folders from `GAMEDATA/MODS`, then extract the ZIP there. Keep unrelated mods. To uninstall, remove only `NMS_FSD_Countdown`. The private build is reproducible with [`tools/build_countdown_release.py`](tools/build_countdown_release.py) using the recovered source WAV, FFmpeg, wav2wem, and vgmstream. The public repository does not distribute the ZIP or source audio.
 
-Charging at HUD 10 requires a different trigger. The matching `Pl_Ship_Warp_Countdown` media are embedded in the persistent soundbank, and an earlier edited-bank diagnostic silenced custom audio. A separate private, exact-native bank control is prepared with [`tools/build_native_bank_control.py`](tools/build_native_bank_control.py) to test bank loading before another edit. It is not installed and contains no charging replacement.
+Charging at HUD 10 requires a different trigger. The matching `Pl_Ship_Warp_Countdown` media are embedded in the persistent soundbank, and an earlier edited-bank diagnostic silenced custom audio. A separate private, exact-native bank control was prepared with [`tools/build_native_bank_control.py`](tools/build_native_bank_control.py) and installed alongside the countdown to test bank loading before another edit. Gameplay is pending. The control contains no charging replacement; remove only `NMS_FSD_NativeBank_Control` to restore the previous countdown-only setup.
 
 ## Earlier investigation (2026-11-08)
 

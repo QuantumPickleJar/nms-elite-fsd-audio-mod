@@ -1,3 +1,7 @@
+## Exact-native bank loader control installed — 2026-11-08
+
+After the user closed No Man's Sky, installed the prepared private `NMS_FSD_NativeBank_Control` folder beside the working five-WEM `NMS_FSD_Countdown` folder. The sole installed BNK is byte-for-byte the native extracted persistent bank (SHA-256 `b725ae4cd02c1556e4054e79c88810e46c35ce36c479793b51573ac7234bdef4`). No other MODS bank existed; the countdown WEM folder was left intact. No charging audio or HIRC edit is in this control. Game playback is **pending**. The next test must check the custom 4–3–2–1 plus ordinary game sound on one system warp; if either is silent, remove only the control folder to restore the prior state.
+
 ## Native-bank loader control prepared, not installed — 2026-11-08
 
 The user confirms the charging line no longer plays with the five-WEM countdown-only package. This verifies removal of the incorrect pulse-drive charging override; it does not solve charging at HUD 10. The game was running when checked, so no MODS files were changed in this step.
