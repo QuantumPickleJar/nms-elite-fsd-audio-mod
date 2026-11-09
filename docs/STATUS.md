@@ -1,3 +1,13 @@
+## Hyperspace completion wind-down probe installed — 2026-11-08
+
+The user reports that the prior finale still cuts off “Engaged” and does not produce a distinct post-warp wind-down in `/home/deck/Videos/clip_1,794,186,501,513.mp4`. The user authorized omitting “Engaged” temporarily. That gameplay result supersedes the earlier statement below that the finale was awaiting its first test.
+
+The prior finale mapped both Engage and wind-down to the five loose `Pl_Ship_WarpBuildUp_End` media. The current game's `soundbanksinfo.xml` also lists twelve loose, streamed media for `Pl_Ship_Hyperspace_End` (event 3249434187). Two extracted native media from that latter event correlate with the recording at approximately 43.652 s (0.282) and 45.152 s (0.207), near warp completion. This supports `Hyperspace_End` as a completion route; correlation alone does not prove every variant or guarantee the custom cue will survive game mixing. The earlier custom end WEM had no convincing whole-cue match at completion.
+
+`tools/build_hyperspace_end_probe.py` builds private `NMS_FSD_HyperspaceEnd_2026-11-08.zip` (SHA-256 `8cfe25c37b9f343f3d91d1405437b3652f7f76e631e6b997e3bb7b8948e2b585`). It retains the same five-second, +15 dB HUD countdown cue; the new completion cue has 0.5 s silence followed by the original 1.5 s jump/wind-down source at +11 dB with a limiter. There is no Engage excerpt. The cue replaces all twelve `Pl_Ship_Hyperspace_End` loose media, and the old `WarpBuildUp_End` replacements are removed. The delayed charging intro package remains installed. Sources are unchanged.
+
+The ZIP has 17 Wwise Vorbis WEMs, 48 kHz stereo config 0x3102, exact 240000 and 96000 decoded frames, matching manifest hashes, and no BNK. The 21 existing tests pass. With NMS closed, the prior finale folder was moved to a private backup outside MODS and this revision installed; all 17 installed WEM hashes match. Other mods and saves were untouched. **Gameplay playback of the new completion cue is untested.** The next recording should show whether the wind-down is audible after the tunnel and whether it finishes before music.
+
 ## Engage and wind-down moved to completion cue — 2026-11-08
 
 The user reports the delayed charging cue is close to final quality, but the “Engaged” word is still cut off near jump and the end/wind-down is masked by other sounds. The 56.257-second gameplay video shows the warp completion display late in the recording and a brief interval before normal cockpit view returns. Audio correlation for the end cue is weak and cannot establish an exact music onset; this is a placement trial guided by the visible completion interval and user listening report.
