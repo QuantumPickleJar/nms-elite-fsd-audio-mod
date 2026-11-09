@@ -39,16 +39,16 @@ def run(command):
     subprocess.run([str(x) for x in command], check=True, capture_output=True)
 
 
-def excerpt(source, output, advance_frames=0):
+def excerpt(source, output, advance_frames=0, number_delay_frames=0):
     with wave.open(str(source), 'rb') as source_wav:
         params = source_wav.getparams()
         if (params.framerate, params.nchannels, params.sampwidth) != (RATE, 2, 3):
             raise ValueError('expected 48 kHz, stereo, 24-bit PCM source')
         if source_wav.getnframes() < START_FRAME + BUILDUP_FRAMES:
             raise ValueError('source too short for recovered cue interval')
-        source_wav.setpos(START_FRAME)
-        audio = source_wav.readframes(BUILDUP_FRAMES)
-        audio = audio[advance_frames * 6:] + bytes(advance_frames * 6)
+        source_wav.setpos(START_FRAME + min(number_delay_frames, RATE // 2))
+        audio = source_wav.readframes(BUILDUP_FRAMES - number_delay_frames)
+        audio = bytes(number_delay_frames * 6) + audio[advance_frames * 6:] + bytes(advance_frames * 6)
     with wave.open(str(output), 'wb') as dest:
         dest.setparams(params)
         dest.writeframes(audio)
@@ -91,13 +91,17 @@ def main():
     parser.add_argument('--jump-gain-db', type=float, default=0)
     parser.add_argument('--advance-ms', type=int, default=0,
                         help='Advance content and pad its end, preserving five-second duration')
+    parser.add_argument('--number-delay-ms', type=int, default=0,
+                        help='Silence before the first number, preserving five-second duration')
     args = parser.parse_args()
     if not 0 <= args.buildup_gain_db <= 20 or not 0 <= args.jump_gain_db <= 5:
         parser.error('buildup gain must be 0–20 dB and jump gain 0–5 dB')
     if not 0 <= args.advance_ms <= 500:
         parser.error('advance must be 0–500 ms')
+    if not 0 <= args.number_delay_ms <= 1000 or args.advance_ms and args.number_delay_ms:
+        parser.error('number delay must be 0–1000 ms and cannot combine with advance')
     root = ROOT + ('_Louder' if args.buildup_gain_db else '')
-    if args.advance_ms or args.jump_gain_db:
+    if args.advance_ms or args.jump_gain_db or args.number_delay_ms:
         root = ROOT + '_Adjusted'
     if args.output.exists():
         parser.error('refusing to overwrite existing ZIP')
@@ -107,7 +111,8 @@ def main():
         work = Path(temp)
         buildup_wav = work / 'buildup_excerpt.wav'
         advance_frames = args.advance_ms * RATE // 1000
-        excerpt(long_source, buildup_wav, advance_frames)
+        number_delay_frames = args.number_delay_ms * RATE // 1000
+        excerpt(long_source, buildup_wav, advance_frames, number_delay_frames)
         if args.buildup_gain_db:
             boosted = work / 'buildup_louder.wav'
             filters = f'volume={args.buildup_gain_db}dB'
@@ -128,8 +133,11 @@ def main():
             'buildup_gain_db': args.buildup_gain_db,
             'jump_gain_db': args.jump_gain_db,
             'advance_ms': args.advance_ms,
+            'number_delay_ms': args.number_delay_ms,
             'buildup_limiter': args.buildup_gain_db > 10,
-            'source_interval_seconds': [13.05 + args.advance_ms / 1000, 18.05],
+            'source_interval_seconds': [13.05 + args.advance_ms / 1000 + min(args.number_delay_ms, 500) / 1000,
+                                        13.05 + min(args.number_delay_ms, 500) / 1000
+                                        + (BUILDUP_FRAMES - number_delay_frames) / RATE],
             'tail_silence_frames': advance_frames,
             'source_offsets_seconds': {'4': 13.55, '3': 14.55, '2': 15.55,
                                        '1': 16.55, 'jump': 18.05},
