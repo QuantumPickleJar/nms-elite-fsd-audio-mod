@@ -10,7 +10,7 @@ The private `NMS_FSD_HUD_Countdown_Only_2026-11-08.zip` contains one `NMS_FSD_Co
 
 Close the game, remove earlier `NMS_FSD_*` countdown/charging probe folders from `GAMEDATA/MODS`, then extract the ZIP there. Keep unrelated mods. To uninstall, remove only `NMS_FSD_Countdown`. The private build is reproducible with [`tools/build_countdown_release.py`](tools/build_countdown_release.py) using the recovered source WAV, FFmpeg, wav2wem, and vgmstream. The public repository does not distribute the ZIP or source audio.
 
-The matching `Pl_Ship_Warp_Countdown` media are embedded in the persistent soundbank. The user confirmed that an exact-native bank control preserves the custom countdown, then heard the charging line from a one-media replacement in the random countdown container. The current private [`tools/build_charging_sequence_probe.py`](tools/build_charging_sequence_probe.py) candidate changes that container to sequence mode and places charging first, aiming for the HUD 10 call. It is installed for gameplay verification; repeated-warp behavior remains untested. See [STATUS.md](docs/STATUS.md).
+The user confirmed the charging line starts with the HUD 10 countdown, and 4–3–2–1 continues correctly. The installed private [`tools/build_charging_sequence_probe.py`](tools/build_charging_sequence_probe.py) build is the known-good baseline. Pause synchronization is the only remaining check. The game audio metadata has no named pause/resume event for this countdown; test whether the game's pause menu already pauses Wwise world audio before changing the bank. See [STATUS.md](docs/STATUS.md).
 
 ## Earlier investigation (2026-11-08)
 
