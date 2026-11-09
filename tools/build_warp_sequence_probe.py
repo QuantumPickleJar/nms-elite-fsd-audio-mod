@@ -39,7 +39,7 @@ def run(command):
     subprocess.run([str(x) for x in command], check=True, capture_output=True)
 
 
-def excerpt(source, output, advance_frames=0, number_delay_frames=0):
+def excerpt(source, output, advance_frames=0, number_delay_frames=0, tail_frames=0):
     with wave.open(str(source), 'rb') as source_wav:
         params = source_wav.getparams()
         if (params.framerate, params.nchannels, params.sampwidth) != (RATE, 2, 3):
@@ -47,7 +47,7 @@ def excerpt(source, output, advance_frames=0, number_delay_frames=0):
         if source_wav.getnframes() < START_FRAME + BUILDUP_FRAMES:
             raise ValueError('source too short for recovered cue interval')
         source_wav.setpos(START_FRAME + min(number_delay_frames, RATE // 2))
-        audio = source_wav.readframes(BUILDUP_FRAMES - number_delay_frames)
+        audio = source_wav.readframes(BUILDUP_FRAMES - number_delay_frames + tail_frames)
         audio = bytes(number_delay_frames * 6) + audio[advance_frames * 6:] + bytes(advance_frames * 6)
     with wave.open(str(output), 'wb') as dest:
         dest.setparams(params)
@@ -93,16 +93,23 @@ def main():
                         help='Advance content and pad its end, preserving five-second duration')
     parser.add_argument('--number-delay-ms', type=int, default=0,
                         help='Silence before the first number, preserving five-second duration')
+    parser.add_argument('--tail-ms', type=int, default=0,
+                        help='Extend buildup to include the source Engage line')
+    parser.add_argument('--jump-delay-ms', type=int, default=0)
     args = parser.parse_args()
-    if not 0 <= args.buildup_gain_db <= 20 or not 0 <= args.jump_gain_db <= 5:
-        parser.error('buildup gain must be 0–20 dB and jump gain 0–5 dB')
+    if not 0 <= args.buildup_gain_db <= 20 or not 0 <= args.jump_gain_db <= 8:
+        parser.error('buildup gain must be 0–20 dB and jump gain 0–8 dB')
     if not 0 <= args.advance_ms <= 500:
         parser.error('advance must be 0–500 ms')
     if not 0 <= args.number_delay_ms <= 1000 or args.advance_ms and args.number_delay_ms:
         parser.error('number delay must be 0–1000 ms and cannot combine with advance')
+    if not 0 <= args.tail_ms <= 800 or not 0 <= args.jump_delay_ms <= 500:
+        parser.error('tail must be 0–800 ms and jump delay 0–500 ms')
     root = ROOT + ('_Louder' if args.buildup_gain_db else '')
     if args.advance_ms or args.jump_gain_db or args.number_delay_ms:
         root = ROOT + '_Adjusted'
+    if args.tail_ms or args.jump_delay_ms:
+        root = ROOT + '_EngageTail'
     if args.output.exists():
         parser.error('refusing to overwrite existing ZIP')
     long_source = args.source_root / 'clip_034.55s_75985ea7b6a8.wav'
@@ -112,7 +119,8 @@ def main():
         buildup_wav = work / 'buildup_excerpt.wav'
         advance_frames = args.advance_ms * RATE // 1000
         number_delay_frames = args.number_delay_ms * RATE // 1000
-        excerpt(long_source, buildup_wav, advance_frames, number_delay_frames)
+        tail_frames = args.tail_ms * RATE // 1000
+        excerpt(long_source, buildup_wav, advance_frames, number_delay_frames, tail_frames)
         if args.buildup_gain_db:
             boosted = work / 'buildup_louder.wav'
             filters = f'volume={args.buildup_gain_db}dB'
@@ -123,21 +131,28 @@ def main():
             buildup_wav = boosted
         buildup, buildup_info = encode(buildup_wav, work, 'buildup', args.wav2wem, args.vgmstream)
         jump_input = jump_source
-        if args.jump_gain_db:
+        if args.jump_gain_db or args.jump_delay_ms:
             jump_input = work / 'jump_louder.wav'
+            filters = f'volume={args.jump_gain_db}dB'
+            if args.jump_gain_db > 5:
+                filters += ',alimiter=limit=0.9:level=0:latency=1'
+            if args.jump_delay_ms:
+                filters += f',adelay={args.jump_delay_ms}:all=1'
             run(['ffmpeg', '-v', 'error', '-i', jump_source, '-af',
-                 f'volume={args.jump_gain_db}dB', '-c:a', 'pcm_s24le', jump_input])
+                 filters, '-c:a', 'pcm_s24le', jump_input])
         jump, jump_info = encode(jump_input, work, 'jump', args.wav2wem, args.vgmstream)
         manifest = {
             'status': 'experimental; event dispatch and timing need gameplay test',
             'buildup_gain_db': args.buildup_gain_db,
             'jump_gain_db': args.jump_gain_db,
+            'jump_delay_ms': args.jump_delay_ms,
             'advance_ms': args.advance_ms,
             'number_delay_ms': args.number_delay_ms,
+            'tail_ms': args.tail_ms,
             'buildup_limiter': args.buildup_gain_db > 10,
             'source_interval_seconds': [13.05 + args.advance_ms / 1000 + min(args.number_delay_ms, 500) / 1000,
                                         13.05 + min(args.number_delay_ms, 500) / 1000
-                                        + (BUILDUP_FRAMES - number_delay_frames) / RATE],
+                                        + (BUILDUP_FRAMES - number_delay_frames + tail_frames) / RATE],
             'tail_silence_frames': advance_frames,
             'source_offsets_seconds': {'4': 13.55, '3': 14.55, '2': 15.55,
                                        '1': 16.55, 'jump': 18.05},
