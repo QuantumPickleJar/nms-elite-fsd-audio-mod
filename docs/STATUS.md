@@ -1,3 +1,13 @@
+## Portable countdown-only package installed — 2026-11-08
+
+The user reports that “Engaged” is still audible and the prior post-warp replacement plays the wrong engine sound in `/home/deck/Videos/clip_1,794,187,934,288.mp4` and `/home/deck/Videos/clip_1,794,187,875,232.mp4`. They asked to stop work on wind-down and package only the countdown integration for either OS. This supersedes the untested completion-probe status below.
+
+The installed five-second buildup WEM has a strong audio waveform match at 10.440 s in the 62.085 s video (correlation 0.543) and at 9.938 s in the 66.798 s video (0.434). The recovered “4” onset is one second into that WEM, and the cockpit HUD shows 4 at roughly 11.5 s and 11.0 s respectively. The charging WEM also matches both recordings at 3.389 s and 2.984 s (correlations 0.254 and 0.295 in magnitude). These observations support retaining the existing cue timing; exact perceived voice onset is still a listening judgment.
+
+The earlier buildup included source 13.55–17.42 s, overlapping roughly 70 ms of the recovered Engage onset near 17.35 s. `tools/build_countdown_release.py` stops at 17.30 s and fills the remainder of the same five-second cue with silence. The previously installed `Hyperspace_End` wind-down and all other end-event overrides are removed. The 2.2-second delayed charging WEM is byte-identical to the previous working candidate. The package itself has no Engage audio; an audible remaining Engage could be native game audio and has not been isolated.
+
+Private `NMS_FSD_Countdown_Portable_2026-11-08.zip` (SHA-256 `e49469f0f017381ed42f757dc2499433d7f390134e9a1a4eb298c655d2e2b113`) contains one `NMS_FSD_Countdown` MODS root, 15 Wwise Vorbis WEMs, and no BNK or platform-specific paths. Both cues decode at 48 kHz stereo with exact 240000/249600 frames and no clipped samples (peaks 0.824/0.712). With NMS closed, the two previous FSD probe folders were moved to a private backup outside MODS, and all 15 installed WEM hashes were verified. Other mods and saves were unchanged. **This trimmed countdown package has not yet been tested in gameplay.**
+
 ## Hyperspace completion wind-down probe installed — 2026-11-08
 
 The user reports that the prior finale still cuts off “Engaged” and does not produce a distinct post-warp wind-down in `/home/deck/Videos/clip_1,794,186,501,513.mp4`. The user authorized omitting “Engaged” temporarily. That gameplay result supersedes the earlier statement below that the finale was awaiting its first test.
