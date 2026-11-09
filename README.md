@@ -1,14 +1,14 @@
 # NMS Elite Dangerous FSD Audio Mod
 
-**Status: charging and 4–3–2–1 countdown package installed for gameplay verification.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement.
+**Status: 4–3–2–1 countdown package installed; charging-at-ten remains unresolved.** This is a cross-device engineering workspace for an in-development *No Man's Sky* Forsaken seamless-warp sound replacement.
 
-The user heard the custom cues, but reports that the last end-sound probe played the wrong engine sound and “Engaged” remained audible. The current private package removes all end-sound replacements and trims the countdown before the recovered “Engaged” onset. It has not yet had a gameplay test. An “Engaged” line may also come from unmodified game audio.
+The user confirms “Engaged” no longer plays. Two newer recordings show that the charging replacement also fires during ordinary pulse-drive engagement. Its `Pl_Ship_MiniWarp_Countdown` targets have therefore been removed. The current package retains only the HUD-aligned countdown; charging at the start of the ten-second warp timer needs a different event route.
 
 ## Current portable countdown package
 
-The private `NMS_FSD_Countdown_Portable_2026-11-08.zip` contains one `NMS_FSD_Countdown` mod folder with 15 Wwise Vorbis WEMs: five streamed buildup variants and ten streamed charging intro variants. It uses the same `GAMEDATA/MODS/NMS_FSD_Countdown/AUDIO/WINDOWS/MEDIA` layout on Windows and SteamOS/Proton. It has no bank, jump, Engage, or wind-down replacement. No platform-specific absolute path is stored in the ZIP.
+The private `NMS_FSD_HUD_Countdown_Only_2026-11-08.zip` contains one `NMS_FSD_Countdown` mod folder with five Wwise Vorbis WEMs for the streamed buildup variants. It uses the same `GAMEDATA/MODS/NMS_FSD_Countdown/AUDIO/WINDOWS/MEDIA` layout on Windows and SteamOS/Proton. It has no bank, charging, jump, Engage, or wind-down replacement. No platform-specific absolute path is stored in the ZIP.
 
-Close the game, remove earlier `NMS_FSD_*` countdown/charging probe folders from `GAMEDATA/MODS`, then extract the ZIP there. Keep unrelated mods. To uninstall, remove only `NMS_FSD_Countdown`. The private build is reproducible with [`tools/build_countdown_release.py`](tools/build_countdown_release.py) using the recovered source WAV, the supplied charging MP3, FFmpeg, wav2wem, and vgmstream. The public repository does not distribute the ZIP or source audio.
+Close the game, remove earlier `NMS_FSD_*` countdown/charging probe folders from `GAMEDATA/MODS`, then extract the ZIP there. Keep unrelated mods. To uninstall, remove only `NMS_FSD_Countdown`. The private build is reproducible with [`tools/build_countdown_release.py`](tools/build_countdown_release.py) using the recovered source WAV, FFmpeg, wav2wem, and vgmstream. The public repository does not distribute the ZIP or source audio.
 
 ## Earlier investigation (2026-11-08)
 
