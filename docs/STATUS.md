@@ -1,3 +1,11 @@
+## Bank diagnostic rejected by gameplay; audible package restored — 2026-11-08
+
+The user reports no sound whatsoever with the charging bank diagnostic. This is a runtime regression despite successful Wwiser parsing and offline WEM decoding. The 250 ms advance and additional gain cannot be evaluated from that silent test and remain unproven. The failure does not identify a specific cause: bank override loading, modified event behavior, or bank/media runtime compatibility require isolation. Do not describe the charging-at-ten implementation as working or reinstall it as a playable revision.
+
+With NMS closed, moved `NMS_FSD_WarpCharging_BankProbe` outside MODS to a private rollback backup and restored `NMS_FSD_WarpSequence_Probe_Louder` from the exact ZIP the user previously heard clearly (`NMS_FSD_WarpSequence_Louder_Control_2026-11-08.zip`, SHA-256 694f7977f39f317e507ad99324e670363da569f49415cfa6c661023bae310b2c). All ten installed WEM hashes match, each target ID appears once, and no NMS_AUDIO_PERSISTENT.BNK override remains under MODS. This restores the original five-second arrangement and +10 dB buildup; it does not include the charging sentence or latest timing/gain changes. Other mods, native game files and saves were untouched. Recovered playback after rollback still needs user confirmation.
+
+Next gate: confirm the restored known-audible package plays on the same route. Then change timing/gain independently of any BNK. Before attempting a new modified-bank test, isolate whether an unmodified exact-native BNK override preserves known-positive loose-WEM playback. Successful parsing alone is not an adequate runtime compatibility gate.
+
 ## Charging-at-ten persistent-bank diagnostic installed — 2026-11-08
 
 The user supplied an MP3 with the complete “Frame shift drive charging” line and explicitly authorized a separate bank diagnostic, making an exception to the earlier no-BNK constraint. A local speech recognizer identifies the full line within its first 2.5 seconds. Encoded the first 3 seconds as 48 kHz stereo Wwise Vorbis with the proven 0x3102 channel config, +16 dB source gain, 144000 decoded frames, peak 0.712 and no clipping. The downloaded recording and derived media remain private.

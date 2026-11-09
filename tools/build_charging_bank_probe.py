@@ -1,5 +1,7 @@
 """Private exact-build BNK diagnostic: charging on first countdown tick.
 
+KNOWN GAMEPLAY FAILURE: this diagnostic produced no audible cues.
+Do not treat offline validation as game compatibility or install as a working mod.
 Requires the user's authorization for a persistent-bank override. Never publish
 the output ZIP, bank, or audio. Sequence/reset behavior requires a game test.
 """
@@ -136,7 +138,7 @@ def main():
         assert info['frames'] == 144000
         bank, report = patch_bank(args.native_bank.read_bytes(), wem)
         report.update(charging=info, charging_source_sha256=sha(args.charging_mp3.read_bytes()),
-                      status='offline validated; sequence, repeat and abort behavior untested in game')
+                      status='known gameplay failure: no audible cues; offline structure checks do not establish runtime compatibility')
         with zipfile.ZipFile(args.output, 'x', zipfile.ZIP_DEFLATED) as z:
             with zipfile.ZipFile(args.sequence_zip) as sequence:
                 names = [n for n in sequence.namelist() if n.endswith('.wem')]
