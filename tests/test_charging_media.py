@@ -7,6 +7,7 @@ from unittest.mock import patch
 from tests.test_charging_bank import fixture
 from tools import build_charging_bank_probe as bank
 from tools import build_charging_media_probe as media
+from tools import build_charging_sequence_probe as sequence
 
 
 class MediaOnlyBankTests(unittest.TestCase):
@@ -34,6 +35,20 @@ class MediaOnlyBankTests(unittest.TestCase):
         self.assertEqual(bank.u32(changed[bank.FIRST_SOUND], 13), 12345)
         self.assertEqual(bank.u32(changed[bank.FIRST_SOUND], 17), 7)
         self.assertEqual(report['new_hirc_count'], 0)
+
+    def test_sequence_first_item_and_leave_other_records_intact(self):
+        native = fixture()
+        result = sequence.set_first_child_sequence(native)
+        before = dict(bank.split_chunks(native))
+        after = dict(bank.split_chunks(result))
+        for tag in (b'BKHD', b'DIDX', b'DATA', b'STID'):
+            self.assertEqual(after[tag], before[tag])
+        old = {bank.u32(body): body for _, body in bank.records(before[b'HIRC'])}
+        new = {bank.u32(body): body for _, body in bank.records(after[b'HIRC'])}
+        self.assertEqual(set(old), set(new))
+        self.assertEqual({key for key in old if old[key] != new[key]},
+                         {bank.CONTAINER})
+        self.assertEqual(new[bank.CONTAINER][83:85], b'\x01\x10')
 
 
 if __name__ == '__main__':
