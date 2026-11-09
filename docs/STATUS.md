@@ -1,3 +1,11 @@
+## Native-bank loader control prepared, not installed — 2026-11-08
+
+The user confirms the charging line no longer plays with the five-WEM countdown-only package. This verifies removal of the incorrect pulse-drive charging override; it does not solve charging at HUD 10. The game was running when checked, so no MODS files were changed in this step.
+
+`tools/build_native_bank_control.py` packages the exact, unmodified `NMS_AUDIO_PERSISTENT.BNK` extracted from this installed game build (SHA-256 `b725ae4cd02c1556e4054e79c88810e46c35ce36c479793b51573ac7234bdef4`). Private `NMS_FSD_NativeBank_Control_2026-11-08.zip` has SHA-256 `99d81da4384e4b372a60bf9321ef756d7f8fcd4304dcba44444c34241db6766b`. The ZIP has one correctly rooted BNK, no WEM, no HIRC or media edits, and passed ZIP integrity and bank-hash checks. It contains copyrighted game data and must remain private.
+
+The next controlled game test is to install this exact-native bank alongside the working countdown only after NMS closes, then check whether the custom 4–3–2–1 and ordinary game audio still play. If they do, the previous modified-bank silence points to the edit; if they do not, the bank override route itself needs investigation. No claim about charging-at-ten follows from this control alone.
+
 ## Pulse-drive charging regression removed — 2026-11-08
 
 The user confirms that “Engaged” no longer plays, but the charging voice also plays during ordinary pulse-drive engagement. They supplied a 60.864 s full warp recording (`clip_1,794,189,105,735.mp4`) and a 10.454 s normal pulse recording (`clip_1,794,189,094,296.mp4`), and asked whether the end of the warp sound cuts out. The current charging WEM matches the full recording at 2.189 s (correlation 0.229), before the visible ten-second warp countdown. Its ten loose targets belong to `Pl_Ship_MiniWarp_Countdown`, which is shared with normal pulse use. The short pulse recording is visually consistent with that route; its truncated duration does not give a reliable whole-WEM correlation.
