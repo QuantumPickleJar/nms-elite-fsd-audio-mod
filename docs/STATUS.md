@@ -1,3 +1,7 @@
+## One-media charging bank diagnostic installed — 2026-11-08
+
+After the user closed NMS, moved `NMS_FSD_NativeBank_Control` outside MODS to a private backup and installed `NMS_FSD_ChargingMedia_Probe` alongside the unchanged five-WEM `NMS_FSD_Countdown` folder. The sole installed BNK SHA-256 is `9e6393a6ece3571ea1d8a848bfbd96b60f25c34dd2150e26b55f6fc135d794ac`, matching the media-only ZIP manifest. The bank contains one changed embedded countdown media and sound cache identity; its native random container, events, and actions remain untouched. No other mod or save was changed. **Gameplay is pending:** check that 4–3–2–1 and ordinary sounds still play, then whether any part of the charging line appears during the ten-second HUD countdown. Its exact number is random in this diagnostic.
+
 ## One-media charging bank diagnostic prepared, not installed — 2026-11-08
 
 The user reports the exact-native bank control preserves the audible 4–3–2–1 countdown and ordinary game audio, with no charging line, as expected. This establishes that the MODS bank override route itself can load without silencing the known-positive loose WEMs. No media or event HIRC edit was part of that control.
